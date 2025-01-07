@@ -11,7 +11,6 @@ import SwiftUI
 struct CategoriesView: View {
     @StateObject private var viewModel = ViewModel()
     @State private var selectedCategory: String? = nil
-    //@State private var selectedOption: String? = nil
     @State private var selectedOptions: [String] = []
 
     var body: some View {
@@ -24,9 +23,6 @@ struct CategoriesView: View {
                 LazyVStack(alignment: .leading, spacing: 15) {
                     ForEach(splitOptionsIntoRows(options: options, itemsPerRow: 4), id: \.self) { row in
                         HStack(spacing: 9) {
-//                            ForEach(Array(row.enumerated()), id: \.offset) { index, option in
-//                                optionButton(for: option, id: index)
-//                            }
                             ForEach(row, id: \.self) { option in
                                 optionButton(for: option)
                             }
@@ -75,12 +71,10 @@ struct CategoriesView: View {
                 .padding(.vertical, 8)
                 .foregroundStyle(
                     isOptionSelected(option) ? Color.white : Color.black.opacity(0.6)
-//                    selectedOption == "\(option) - \(id)" ? Color.white : Color.black.opacity(0.6)
                 )
                 .background(
                     RoundedRectangle(cornerRadius: 20)
                         .fill(
-//                            selectedOption == "\(option) - \(id)" ? Color.burdeosButton : Color.clear
                             isOptionSelected(option) ? Color.burdeosButton : Color.clear
                         )
                     
@@ -88,8 +82,6 @@ struct CategoriesView: View {
                 .overlay(
                     RoundedRectangle(cornerRadius: 20)
                         .stroke(
-//                            selectedOption == "\(option) - \(id)" ? Color.burdeosButton : Color.black.opacity(0.4),
-//                            lineWidth: 1
                             isOptionSelected(option) ? Color.burdeosButton : Color.black.opacity(0.4), lineWidth: 1
                         )
                 )

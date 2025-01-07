@@ -26,7 +26,9 @@ struct UserFormView: View {
                 
                 DatePicker("", selection: $dob, displayedComponents: .date)
                     .labelsHidden()
-                    .background(.clear)
+                  //  .background(.clear)
+                
+                Spacer()
             }
             
             Divider()
@@ -36,8 +38,7 @@ struct UserFormView: View {
                 Text("Gender")
                     .font(.system(size: 15))
                     .foregroundStyle(.black.opacity(0.6))
-                
-                Spacer()
+
                 
                 Menu {
                     ForEach(genders, id: \.self) { genderOption in
@@ -52,13 +53,15 @@ struct UserFormView: View {
                         Text(gender)
                             .font(.system(size: 15))
                             .foregroundStyle(.black)
-                            .padding(.leading)
-                        Image("chevron.down")
+                            .padding(.leading, 76)
+                        Image(systemName: "chevron.down")
                             .font(.system(size: 14))
                             .foregroundStyle(.black)
                             .padding(.trailing)
                     }
                 }
+                
+                Spacer()
             }
             
             Divider()
@@ -66,14 +69,25 @@ struct UserFormView: View {
             //phone
             HStack {
                 Text("Phone")
-                    .font(.system(size: 16))
+                    .font(.system(size: 15))
                     .foregroundStyle(.black.opacity(0.6))
                 
-                Spacer()
+                Text("+1")
+                    .font(.system(size: 15))
+                    .padding(.leading, 76)
                 
-                TextField("+1", text: $phone)
-                    .multilineTextAlignment(.trailing)
-                    .keyboardType(.phonePad)
+                TextField("Enter your number", text: Binding (
+                    get: { phone },
+                    set: { newValue in
+                        if newValue.filter(\.isNumber).count <= 10 {
+                            phone = newValue.filter { $0.isNumber }
+                        }
+                    }
+                ))
+                .keyboardType(.phonePad)
+                .multilineTextAlignment(.trailing)
+                
+                Spacer()
                     
             }
             Divider()
@@ -86,7 +100,7 @@ struct UserFormView: View {
 #Preview {
     @State var dob: Date = Date()
     @State var gender: String = "Male"
-    @State var phone: String = "+1"
+    @State var phone: String = ""
     
     UserFormView(dob: $dob, gender: $gender, phone: $phone)
 }

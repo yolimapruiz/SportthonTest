@@ -19,8 +19,6 @@ struct Standarbutton: View {
                     Text(label)
                         .font(.system(size: 16, weight: .regular))
                         .foregroundColor(.black)
-                    //.frame(width: 327, height: 50)
-                    // .background(Color.white)
                         .cornerRadius(25)
                 }
         
