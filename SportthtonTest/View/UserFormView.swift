@@ -98,9 +98,9 @@ struct UserFormView: View {
 }
 
 #Preview {
-    @State var dob: Date = Date()
-    @State var gender: String = "Male"
-    @State var phone: String = ""
+    @Previewable @State var dob: Date = Date()
+    @Previewable @State var gender: String = "Male"
+    @Previewable @State var phone: String = ""
     
     UserFormView(dob: $dob, gender: $gender, phone: $phone)
 }
