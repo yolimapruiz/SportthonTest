@@ -54,10 +54,13 @@ struct UserFormView: View {
                             .font(.system(size: 15))
                             .foregroundStyle(.black)
                             .padding(.leading, 76)
+                        
+                        Spacer()
+                        
                         Image(systemName: "chevron.down")
                             .font(.system(size: 14))
                             .foregroundStyle(.black)
-                            .padding(.trailing)
+                         
                     }
                 }
                 
